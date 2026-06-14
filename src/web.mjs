@@ -63,6 +63,11 @@ function getMonthGrid() {
 function renderCalendar(weeks) {
 	const calendarContainer = document.getElementById("calendar");
 	calendarContainer.textContent = "";
+
+	const monthName = document.createElement("h2");
+	monthName.textContent = months[state.currentMonth];
+	calendarContainer.appendChild(monthName);
+
 	const calendarTable = document.createElement("table");
 	const thead = document.createElement("thead");
 	const headerRow = document.createElement("tr");
@@ -73,8 +78,8 @@ function renderCalendar(weeks) {
 		headerRow.appendChild(th);
 	}
 
-	thead.append(headerRow);
-	calendarTable.append(thead);
+	thead.appendChild(headerRow);
+	calendarTable.appendChild(thead);
 
 	const tbody = document.createElement("tbody");
 
