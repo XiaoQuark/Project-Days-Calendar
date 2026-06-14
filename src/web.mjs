@@ -13,8 +13,22 @@ window.onload = function () {
 	state.currentYear = now.getFullYear();
 	state.currentMonth = now.getMonth();
 
+	prevButton.addEventListener("click", changeToPrevMonth);
+	nextButton.addEventListener("click", changeToNextMonth);
 	const weeks = getMonthGrid();
 };
+
+function changeToPrevMonth() {
+	state.currentMonth -= 1;
+	console.log(state.currentMonth);
+	getMonthGrid();
+}
+
+function changeToNextMonth() {
+	state.currentMonth += 1;
+	console.log(state.currentMonth);
+	getMonthGrid();
+}
 
 function getMonthGrid() {
 	const firstWeekday = new Date(
@@ -27,6 +41,8 @@ function getMonthGrid() {
 		state.currentMonth + 1,
 		0,
 	).getDate();
+
+	console.log(firstWeekday, monthLength);
 
 	const daysOfTheMonth = new Array(firstWeekday).fill(null);
 
