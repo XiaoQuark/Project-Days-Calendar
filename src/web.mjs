@@ -1,8 +1,3 @@
-// This is a placeholder file which shows how you can access functions and data defined in other files.
-// It can be loaded into index.html.
-// Note that when running locally, in order to open a web page which uses modules, you must serve the directory over HTTP e.g. with https://www.npmjs.com/package/http-server
-// You can't open the index.html file using a file:// URL.
-
 import { getGreeting, months, weekdays } from "./common.mjs";
 import daysData from "../data/days.json" with { type: "json" };
 
@@ -20,24 +15,19 @@ function getMonthGrid(year, monthIndex) {
 	const firstWeekday = new Date(year, monthIndex, 1).getDay();
 	const monthLength = new Date(year, monthIndex + 1, 0).getDate();
 
-	const monthDays = [];
-
-	for (let i = 0; i < firstWeekday; i++) {
-		monthDays.push(null);
-	}
+	const month = new Array(firstWeekday).fill(null);
 
 	for (let day = 1; day <= monthLength; day++) {
-		monthDays.push(day);
+		month.push(day);
 	}
 
 	const weeks = [];
 
-	renderCalendar(weeks);
-
-	for (let i = 0; i < monthDays.length; i += 7) {
-		weeks.push(monthDays.slice(i, i + 7));
+	for (let i = 0; i < month.length; i += 7) {
+		weeks.push(month.slice(i, i + 7));
 	}
 
+	renderCalendar(weeks);
 	return weeks;
 }
 
@@ -56,7 +46,23 @@ function renderCalendar(weeks) {
 
 	thead.append(headerRow);
 	calendarTable.append(thead);
-	calendarContainer.append(calendarTable);
+
+	const tbody = document.createElement("tbody");
+
+	for (const week of weeks) {
+		const row = document.createElement("tr");
+
+		for (const day of week) {
+			const cell = document.createElement("td");
+			cell.textContent = day ?? "";
+			row.appendChild(cell);
+		}
+
+		tbody.appendChild(row);
+	}
+
+	calendarTable.appendChild(tbody);
+	calendarContainer.appendChild(calendarTable);
 }
 
 // the grid is actually an array of arrays, no?
@@ -84,3 +90,14 @@ function renderCalendar(weeks) {
 // 28/29 days months = 1
 
 // week 0 - 6 (sun - sat)
+
+// if the first day of the week is Monday, so value 1, it's the equivalent of it's index in the week array, because it would start from 0 Sunday
+
+// so my first week array, should be something like: [null, 1, 2, 3, 4, 5, 6]
+// there was a method to create an array of a specific length and fill it with specific values...
+
+// fill
+
+//  i need to have an array beforehand, but I could use new Array(7).fill(value, start, end)
+
+// ah, I can fill the array with null, then push the following days in
