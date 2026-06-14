@@ -1,28 +1,43 @@
 import { getGreeting, months, weekdays } from "./common.mjs";
 import daysData from "../data/days.json" with { type: "json" };
 
-window.onload = function () {
-	const now = new Date();
-	const currentYear = now.getFullYear();
-	const currentMonth = now.getMonth();
-
-	const weeks = getMonthGrid(currentYear, currentMonth);
+const state = {
+	currentMonth: null,
+	currentYear: null,
 };
 
-function getMonthGrid(year, monthIndex) {
-	const firstWeekday = new Date(year, monthIndex, 1).getDay();
-	const monthLength = new Date(year, monthIndex + 1, 0).getDate();
+window.onload = function () {
+	const prevButton = document.getElementById("prev");
+	const nextButton = document.getElementById("next");
+	const now = new Date();
+	state.currentYear = now.getFullYear();
+	state.currentMonth = now.getMonth();
 
-	const month = new Array(firstWeekday).fill(null);
+	const weeks = getMonthGrid();
+};
+
+function getMonthGrid() {
+	const firstWeekday = new Date(
+		state.currentYear,
+		state.currentMonth,
+		1,
+	).getDay();
+	const monthLength = new Date(
+		state.currentYear,
+		state.currentMonth + 1,
+		0,
+	).getDate();
+
+	const daysOfTheMonth = new Array(firstWeekday).fill(null);
 
 	for (let day = 1; day <= monthLength; day++) {
-		month.push(day);
+		daysOfTheMonth.push(day);
 	}
 
 	const weeks = [];
 
-	for (let i = 0; i < month.length; i += 7) {
-		weeks.push(month.slice(i, i + 7));
+	for (let i = 0; i < daysOfTheMonth.length; i += 7) {
+		weeks.push(daysOfTheMonth.slice(i, i + 7));
 	}
 
 	renderCalendar(weeks);
