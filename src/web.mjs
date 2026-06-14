@@ -3,12 +3,10 @@ import daysData from "../data/days.json" with { type: "json" };
 
 window.onload = function () {
 	const now = new Date();
-	console.log(now);
 	const currentYear = now.getFullYear();
 	const currentMonth = now.getMonth();
 
 	const weeks = getMonthGrid(currentYear, currentMonth);
-	console.log(weeks);
 };
 
 function getMonthGrid(year, monthIndex) {
@@ -90,14 +88,3 @@ function renderCalendar(weeks) {
 // 28/29 days months = 1
 
 // week 0 - 6 (sun - sat)
-
-// if the first day of the week is Monday, so value 1, it's the equivalent of it's index in the week array, because it would start from 0 Sunday
-
-// so my first week array, should be something like: [null, 1, 2, 3, 4, 5, 6]
-// there was a method to create an array of a specific length and fill it with specific values...
-
-// fill
-
-//  i need to have an array beforehand, but I could use new Array(7).fill(value, start, end)
-
-// ah, I can fill the array with null, then push the following days in
