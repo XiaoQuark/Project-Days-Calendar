@@ -9,14 +9,31 @@ const state = {
 window.onload = function () {
 	const prevButton = document.getElementById("prev");
 	const nextButton = document.getElementById("next");
+	const monthSelect = document.getElementById("month-select");
+	const yearSelect = document.getElementById("year-select");
+
+	populateMonthsSelect(monthSelect);
+
 	const now = new Date();
 	state.currentYear = now.getFullYear();
 	state.currentMonth = now.getMonth();
 
 	prevButton.addEventListener("click", changeToPrevMonth);
 	nextButton.addEventListener("click", changeToNextMonth);
+	monthSelect.addEventListener("change", handleMonthChange);
+	// yearSelect.addEventListener("change", handleYearChange);
+
 	const weeks = getMonthGrid();
 };
+
+function populateMonthsSelect(monthSelect) {
+	for (const month of months) {
+		const option = document.createElement("option");
+		option.value = month;
+		option.textContent = month;
+		monthSelect.appendChild(option);
+	}
+}
 
 function changeToPrevMonth() {
 	if (state.currentMonth === 0) {
@@ -37,6 +54,12 @@ function changeToNextMonth() {
 		state.currentMonth += 1;
 	}
 	console.log(state.currentMonth);
+	getMonthGrid();
+}
+
+function handleMonthChange(event) {
+	console.log(months.indexOf(event.target.value));
+	state.currentMonth = months.indexOf(event.target.value);
 	getMonthGrid();
 }
 
