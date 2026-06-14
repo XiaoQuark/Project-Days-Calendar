@@ -19,13 +19,23 @@ window.onload = function () {
 };
 
 function changeToPrevMonth() {
-	state.currentMonth -= 1;
+	if (state.currentMonth === 0) {
+		state.currentYear -= 1;
+		state.currentMonth = 11;
+	} else {
+		state.currentMonth -= 1;
+	}
 	console.log(state.currentMonth);
 	getMonthGrid();
 }
 
 function changeToNextMonth() {
-	state.currentMonth += 1;
+	if (state.currentMonth === 11) {
+		state.currentMonth = 0;
+		state.currentYear += 1;
+	} else {
+		state.currentMonth += 1;
+	}
 	console.log(state.currentMonth);
 	getMonthGrid();
 }
@@ -65,7 +75,7 @@ function renderCalendar(weeks) {
 	calendarContainer.textContent = "";
 
 	const monthName = document.createElement("h2");
-	monthName.textContent = months[state.currentMonth];
+	monthName.textContent = `${months[state.currentMonth]} ${state.currentYear}`;
 	calendarContainer.appendChild(monthName);
 
 	const calendarTable = document.createElement("table");
