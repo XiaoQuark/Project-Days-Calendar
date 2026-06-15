@@ -7,9 +7,4 @@ import { getGreeting } from "./common.mjs";
 import daysData from "./days.json" with { type: "json" };
 
 
-let currentDate = new Date();
-let currentMonth = currentDate.getMonth();
-let currentYear = currentDate.getFullYear();
-
-
 
