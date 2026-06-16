@@ -1,0 +1,26 @@
+table {
+	border-collapse: collapse;
+	width: 90%;
+}
+
+th,
+td {
+	width: 12%;
+	height: 100px;
+	text-align: end;
+	vertical-align: top;
+	font-size: 20px;
+	padding: 8px;
+}
+
+th {
+	background-color: lightgray;
+	font-weight: bold;
+	text-align: center;
+	height: 30px;
+}
+
+/* Hide the modal close button on page load */
+#modal-close {
+	display: none;
+}
