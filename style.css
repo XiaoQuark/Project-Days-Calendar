@@ -1,26 +1,27 @@
-table {
-	border-collapse: collapse;
-	width: 90%;
+
+#header-row {
+	display : flex;
+	margin-bottom : 5px;
+
+
 }
 
-th,
-td {
-	width: 12%;
-	height: 100px;
-	text-align: end;
-	vertical-align: top;
-	font-size: 20px;
-	padding: 8px;
+.day-cell {
+	width : 15vw;
+	text-align : center;
+	font-weight : bold;
 }
 
-th {
-	background-color: lightgray;
-	font-weight: bold;
-	text-align: center;
-	height: 30px;
+.calendar-row {
+	display : flex;
+	margin-bottom : 2px;
+
 }
 
-/* Hide the modal close button on page load */
-#modal-close {
-	display: none;
+.calendar-cell {
+	border : 1px solid black;
+	width : 30vw;
+	height : 15vh;
+	text-align : center;
+	vertical-align : middle;
 }

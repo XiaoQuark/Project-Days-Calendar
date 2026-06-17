@@ -44,14 +44,12 @@ function populateDropdowns() {
 // Render weekday Header
 function renderWeekDays() {
 	const headerRow = document.createElement("div");
-	headerRow.style.display = "flex";
-	headerRow.style.marginBottom = "5px";
+	headerRow.id = "header-row";
+	
 
 	weekDaysArr.forEach((day) => {
 		const cell = document.createElement("div");
-		cell.style.width = "15vw";
-		cell.style.textAlign = "center";
-		cell.style.fontWeight = "bold";
+		cell.className = "day-cell";
 		cell.textContent = day;
 
 		headerRow.appendChild(cell);
@@ -79,18 +77,13 @@ function renderCalendar(month, year) {
 	for (let week = 0; week < 6; week++) {
 		const row = document.createElement("div");
 		row.className = "calendar-row";
-		row.style.display = "flex"; // make row a flex container
-		row.style.marginBottom = "2px"; // spacing between rows
+		
 
 		// 7 days in a week
 		for (let day = 0; day < 7; day++) {
 			const cell = document.createElement("div");
 			cell.className = "calendar-cell";
-			cell.style.border = "1px solid black"; // minimal style
-			cell.style.width = "30vw";
-			cell.style.height = "15vh";
-			cell.style.textAlign = "center";
-			cell.style.verticalAlign = "middle";
+			
 
 			// Track the state if the date is the event date
 			let eventDay = false;
