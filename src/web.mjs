@@ -149,9 +149,13 @@ function goToPreviousMonth() {
 	if (currentMonth === 0) {
 		// january
 		currentMonth = 11; // wrap to december
+		monthDropdown.value = currentMonth;
 		currentYear--; // go to previous year
+		yearDropdown.value = currentYear;
 	} else {
 		currentMonth--; // just go to previous month
+		monthDropdown.value = currentMonth;
+
 	}
 	renderCalendar(currentMonth, currentYear);
 }
@@ -162,9 +166,15 @@ function goToNextMonth() {
 	if (currentMonth === 11) {
 		// december
 		currentMonth = 0; // wrap to january
+		monthDropdown.value = currentMonth;
+
 		currentYear++; // go to next year
+		yearDropdown.value = currentYear;
+
 	} else {
 		currentMonth++; // just go to next month
+		monthDropdown.value = currentMonth;
+
 	}
 	renderCalendar(currentMonth, currentYear);
 }
