@@ -1,20 +1,10 @@
+import { writeFileSync } from "fs";
 import { getEventDate } from "./src/common.mjs";
 import daysData from "./data/days.json" with { type: "json" };
 
 const events = [];
 const timestamp = new Date();
 const dtStamp = createDTStamp(timestamp);
-
-function createDTStamp(timestamp) {
-	const year = timestamp.getUTCFullYear();
-	const month = String(timestamp.getUTCMonth() + 1).padStart(2, "0");
-	const date = String(timestamp.getUTCDate()).padStart(2, "0");
-	const hours = String(timestamp.getUTCHours()).padStart(2, "0");
-	const minutes = String(timestamp.getUTCMinutes()).padStart(2, "0");
-	const seconds = String(timestamp.getUTCSeconds()).padStart(2, "0");
-
-	return `DTSTAMP:${year}${month}${date}T${hours}${minutes}${seconds}Z`;
-}
 
 for (const day of daysData) {
 	for (let year = 2020; year <= 2030; year++) {
@@ -38,7 +28,19 @@ for (const day of daysData) {
 	}
 }
 const iCalendar = createICal(events);
-console.log(iCalendar);
+
+writeFileSync("days.ics", iCalendar);
+
+function createDTStamp(timestamp) {
+	const year = timestamp.getUTCFullYear();
+	const month = String(timestamp.getUTCMonth() + 1).padStart(2, "0");
+	const date = String(timestamp.getUTCDate()).padStart(2, "0");
+	const hours = String(timestamp.getUTCHours()).padStart(2, "0");
+	const minutes = String(timestamp.getUTCMinutes()).padStart(2, "0");
+	const seconds = String(timestamp.getUTCSeconds()).padStart(2, "0");
+
+	return `DTSTAMP:${year}${month}${date}T${hours}${minutes}${seconds}Z`;
+}
 
 function formatICalDate(eventDate) {
 	const year = eventDate.getFullYear();
