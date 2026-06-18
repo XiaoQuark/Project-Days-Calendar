@@ -45,7 +45,6 @@ function populateDropdowns() {
 function renderWeekDays() {
 	const headerRow = document.createElement("div");
 	headerRow.id = "header-row";
-	
 
 	weekDaysArr.forEach((day) => {
 		const cell = document.createElement("div");
@@ -77,13 +76,11 @@ function renderCalendar(month, year) {
 	for (let week = 0; week < 6; week++) {
 		const row = document.createElement("div");
 		row.className = "calendar-row";
-		
 
 		// 7 days in a week
 		for (let day = 0; day < 7; day++) {
 			const cell = document.createElement("div");
 			cell.className = "calendar-cell";
-			
 
 			// Track the state if the date is the event date
 			let eventDay = false;
@@ -155,7 +152,6 @@ function goToPreviousMonth() {
 	} else {
 		currentMonth--; // just go to previous month
 		monthDropdown.value = currentMonth;
-
 	}
 	renderCalendar(currentMonth, currentYear);
 }
@@ -170,11 +166,9 @@ function goToNextMonth() {
 
 		currentYear++; // go to next year
 		yearDropdown.value = currentYear;
-
 	} else {
 		currentMonth++; // just go to next month
 		monthDropdown.value = currentMonth;
-
 	}
 	renderCalendar(currentMonth, currentYear);
 }
