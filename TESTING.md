@@ -46,11 +46,8 @@ We checked multiple months, including:
 
 ## UNIT TESTS Unit tests in `common.test.js` verify:
 
-=============================================================
+ getEventDate() returns the correct event date for each commemorative day (e.g., Ada Lovelace Day on the second Tuesday of October)
 
-this will be done based on the test we implement
-
-==============================================================
 
 ## ICALENDAR (.ICS) FILE GENERATION
 
